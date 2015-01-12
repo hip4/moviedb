@@ -1,0 +1,40 @@
+<div ng-controller="StudioController">
+    <form id="form" name="form">
+        <fieldset>
+            <legend>{{currentStudio.id ? "Edit": "Create" }} Studio</legend>
+            <div class="row">
+                <div class="form-group col-md-6">
+                    <label for="title">Title</label>
+                    <input id="title" required type="text" ng-model="currentStudio.label" placeholder="Enter a name..." class="form-control"/>
+                </div>
+            </div>
+        </fieldset>
+        <button id="save" ng-click="save()" ng-disabled="form.$invalid" class="btn btn-primary">Save Studio</button>
+        <button id="cancel" ng-click="cancel()" class="btn">Cancel</button>
+    </form>
+
+    <div id="list">
+        <fieldset>
+            <legend>Studios</legend>
+            <table id="table" class="table table-striped table-bordered table-condensed">
+                <thead>
+                <tr>
+                    <th>Label</th>
+                    <th colspan="2">Actions</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr ng-repeat="studio in studios">
+                    <td>{{studio.label}}</td>
+                    <td>
+                        <button id="edit" ng-click="edit(studio)" class="btn btn-xs">Edit</button>
+                    </td>
+                    <td>
+                        <button id="delete" ng-click="remove($index, studio.id)" class="btn btn-xs">Delete</button>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </fieldset>
+    </div>
+</div>

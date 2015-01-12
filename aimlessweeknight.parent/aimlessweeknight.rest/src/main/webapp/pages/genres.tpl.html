@@ -1,0 +1,40 @@
+<div ng-controller="GenreController">
+    <form id="form" name="form">
+        <fieldset>
+            <legend>{{currentGenre.id ? "Edit": "Create" }} Genre</legend>
+            <div class="row">
+                <div class="form-group col-md-6">
+                    <label for="title">Title</label>
+                    <input id="title" required type="text" ng-model="currentGenre.label" placeholder="Enter a label..." class="form-control"/>
+                </div>
+            </div>
+        </fieldset>
+        <button id="save" ng-click="save()" ng-disabled="form.$invalid" class="btn btn-primary">Save Genre</button>
+        <button id="cancel" ng-click="cancel()" class="btn">Cancel</button>
+    </form>
+
+    <div id="list">
+        <fieldset>
+            <legend>Genres</legend>
+            <table id="table" class="table table-striped table-bordered table-condensed">
+                <thead>
+                <tr>
+                    <th>Label</th>
+                    <th colspan="2">Actions</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr ng-repeat="genre in genres">
+                    <td>{{genre.label}}</td>
+                    <td>
+                        <button id="edit" ng-click="edit(genre)" class="btn btn-xs">Edit</button>
+                    </td>
+                    <td>
+                        <button id="delete" ng-click="remove($index, genre.id)" class="btn btn-xs">Delete</button>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </fieldset>
+    </div>
+</div>

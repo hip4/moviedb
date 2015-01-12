@@ -1,0 +1,96 @@
+<div ng-controller="MovieController">
+    <form id="form" name="form">
+        <fieldset>
+            <legend>{{currentMovie.id ? "Edit": "Create" }} Movie</legend>
+            <div class="row">
+                <div class="form-group col-md-6">
+                    <label for="title">Title</label>
+                    <input id="title" required type="text" ng-model="currentMovie.originalTitle" placeholder="Enter a Movie title..." class="form-control"/>
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="thumbnail">Thumbnail</label>
+                    <input id="thumbnail" required type="text" ng-model="currentMovie.thumbnailUrl" placeholder="Enter the URL to the thumbnail..." class="form-control"/>
+                </div>
+                <div class="form-group col-md-6" ng-controller="DatePickerController">
+                    <label for="releaseDate">Release date</label>
+                      <table>
+                          <tr>
+                              <td>
+                                  <input id="releaseDate" class="form-control" type="text" datepicker-popup="{{format}}" ng-model="currentMovie.releaseDate" is-open="opened" datepicker-options="dateOptions" close-text="Close"/>
+                              </td>
+                              <td>
+                                  <button type="button" class="btn btn-default" ng-click="open($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+                              </td>
+                          </tr>
+                      </table>
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="genres">Genres</label>
+                    <div id="genres" ng-dropdown-multiselect="" options="genres" selected-model="currentMovie.genres"></div>
+                </div>
+
+                <div class="form-group col-md-6">
+                    <label for="actors">Actors</label>
+                    <div id="actors" ng-dropdown-multiselect="" options="actors" selected-model="currentMovie.actors" extra-settings="actor_dropdown_settings"></div>
+                </div>
+
+                <div class="form-group col-md-6">
+                    <label for="studios">Studios</label>
+                    <div id="studios" ng-dropdown-multiselect="" options="studios" selected-model="currentMovie.studios" extra-settings="studio_dropdown_settings"></div>
+                </div>
+
+                <!--<div class=" form-group col-md-6">
+                    <label for="genre">Genre</label>
+                    <select id="genre" required ng-model="currentMovie.genres" ng-multiple="true"
+                            ng-options="genre as genre.label for genre in genres" class="form-control">
+                        <option value="">-- choose author --</option>
+                    </select>
+                </div>-->
+            </div>
+        </fieldset>
+        <button id="save" ng-click="save()" ng-disabled="form.$invalid" class="btn btn-primary">Save Movie</button>
+        <button id="cancel" ng-click="cancel()" class="btn">Cancel</button>
+    </form>
+
+    <div id="list">
+        <fieldset>
+            <legend>Movies</legend>
+            <div class="search">
+                <label for="search">Search</label>
+                <input id="search" ng-model="searchText">
+            </div>
+            <table id="table" class="table table-striped table-bordered table-condensed">
+                <thead>
+                <tr>
+                    <th>Image</th>
+                    <th>Title</th>
+                    <th>Genres</th>
+                    <th>Actors</th>
+                    <th>Studios</th>
+                    <th>Released</th>
+                    <th>Date Added</th>
+                    <th colspan="2">Actions</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr ng-repeat="movie in movies | filter:searchText">
+                    <td>
+                        <img ng-show="movie.thumbnailUrl != null" style="height: 100px;" src="{{movie.thumbnailUrl}}" />
+                        <img ng-show="movie.thumbnailUrl == null" style="height: 100px;" src="./imgs/no_image.jpg" />
+                    </td>
+                    <td>{{movie.originalTitle}}</td>
+                    <td><p ng-repeat="genre in movie.genres">{{getGenreNameById(genre.id)}}</p></td>
+                    <td><p ng-repeat="actor in movie.actors">{{getActorNameById(actor.id)}}</p></td>
+                    <td><p ng-repeat="studio in movie.studios">{{getStudioNameById(studio.id)}}</p></td>
+                    <td>{{movie.releaseDate | date : format : timezone}}</td>
+                    <td>{{movie.dateAdded | date : format : timezone}}</td>
+                    <td>
+                        <button id="edit" ng-click="edit(movie)" class="btn btn-xs">Edit</button><br />
+                        <button id="delete" ng-click="remove($index, movie.id)" class="btn btn-xs">Delete</button>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </fieldset>
+    </div>
+</div>

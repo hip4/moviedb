@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence xmlns="http://java.sun.com/xml/ns/persistence" version="2.0">
+
+    <persistence-unit name="ch.bfh.ti.aimlessweeknight.moviedb.domain">
+        <class>ch.bfh.ti.aimlessweeknight.moviedb.domain.Actor</class>
+        <class>ch.bfh.ti.aimlessweeknight.moviedb.domain.Movie</class>
+        <class>ch.bfh.ti.aimlessweeknight.moviedb.domain.Genre</class>
+        <class>ch.bfh.ti.aimlessweeknight.moviedb.domain.Studio</class>
+        <class>ch.bfh.ti.aimlessweeknight.moviedb.domain.User</class>
+        <class>ch.bfh.ti.aimlessweeknight.moviedb.domain.Possession</class>
+        <properties>
+          <property name="javax.persistence.jdbc.driver" value="org.h2.Driver"/>
+          <property name="javax.persistence.jdbc.url" value="jdbc:h2:~/bookappDB"/>
+          <property name="javax.persistence.jdbc.user" value="bfh"/>
+          <property name="javax.persistence.jdbc.password" value="bfh"/>
+          <property name="eclipselink.ddl-generation.output-mode" value="database"/>
+          <property name="eclipselink.ddl-generation" value="drop-and-create-tables"/>
+        </properties>
+    </persistence-unit>
+</persistence>

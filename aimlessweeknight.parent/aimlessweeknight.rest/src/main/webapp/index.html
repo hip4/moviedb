@@ -1,0 +1,64 @@
+<!DOCTYPE html> <!-- HTML 5 DocType -->
+<html ng-app="moviedb">
+<head>
+    <title>MovieDB</title>
+    <!--  BEGIN Dependencies -->
+
+    <script src="./js/lib/lodash.min.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.14/angular.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.14/angular-resource.js"></script>
+
+    <script src="./js/lib/ui-bootstrap-tpls-0.12.0.min.js"></script>
+    <script src="./js/lib/angular-ui-router.min.js"></script>
+    <script src="./js/lib/angularjs-dropdown-multiselect.js"></script>
+    <!--  END Dependencies -->
+
+    <script src="./js/application.js"></script>
+    <script src="./js/movies/movies.js"></script>
+    <script src="./js/genres/genres.js"></script>
+    <script src="./js/actors/actors.js"></script>
+    <script src="./js/studios/studios.js"></script>
+    <script src="./js/utils/datepicker.js"></script>
+    <!-- BEGIN Styles -->
+    <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+    <!-- END Styles -->
+</head>
+
+<body style="padding-top: 70px;">
+
+<nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#">MovieDB</a>
+        </div>
+        <div class="collapse navbar-collapse" id="navbar">
+            <ul class="nav navbar-nav">
+                <li ui-sref-active="active"><a href ui-sref="movies">Movies</a></li>
+                <li ui-sref-active="active"><a href ui-sref="actors">Actors</a></li>
+                <li ui-sref-active="active"><a href ui-sref="genres">Genres</a></li>
+                <li ui-sref-active="active"><a href ui-sref="studios">Studios</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<div class="container">
+
+    <div class="jumbotron">
+        <div class="row">
+            <div class="col-md-8">
+                <h1>MovieDB</h1>
+            </div>
+        </div>
+    </div>
+
+    <div ui-view></div>
+</div>
+</body>
+</html>
